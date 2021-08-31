@@ -20,7 +20,7 @@ const categories = [
       text: '건강',
     },
     {
-      name: 'scinece',
+      name: 'science',
       text: '과학',
     },
     {
@@ -35,9 +35,12 @@ const categories = [
   
   const CategoriesBlock = styled.div`
     display: flex;
-    padding: 1rem;
-    width: 768px;
+    padding: 1rem 2rem;
+    width: 990px;
     margin: 0 auto;
+    border-left: 5px solid #e6e6e6;
+    border-bottom: 5px solid #e6e6e6;
+    
     @media screen and (max-width: 768px) {
       width: 100%;
       overflow-x: auto;
@@ -84,7 +87,7 @@ const categories = [
 
     &.active {
       font-weight: 600;
-      border-bottom: 2px solid #000063;
+      border-bottom: 3px solid #000063;
       color: #000063;
       &:hover {
         color: #000063;
