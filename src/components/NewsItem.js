@@ -4,6 +4,12 @@ import styled from 'styled-components';
 const NewsItemBlock = styled.div`
   display: flex;
   width: 100%;
+  padding: 10px;
+  box-shadow: 2px 2px 6px #999;
+  &:hover {
+    box-shadow: 2px 2px 6px #333;
+  }
+
   .thumbnail {
     margin-right: 1rem;
     a {
@@ -77,29 +83,53 @@ const NewsItemBlock = styled.div`
     }
   }
   & + & {
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
 `;
 
 const NewsItem = ({ article }) => {
   const { title, description, url, urlToImage } = article;
+  if (urlToImage === 'null') {
+    
+  }
   return (
     <NewsItemBlock>
+
       {urlToImage && (
         <div className="thumbnail">
           <a href={url} target="_blank" rel="noopener noreferrer">
-            <img src={urlToImage} alt="thumbnail" />
+             <img src={urlToImage} alt="thumbnail" />
           </a>
         </div>
       )}
-      <div className="contents">
-        <h3>
+        <div className="contents">
+          <h3>
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              {title}
+            </a>
+          </h3>
+          <p>{description}</p>
+        </div>
+      
+
+
+      {/* {urlToImage && (
+        <>
+        <div className="thumbnail">
           <a href={url} target="_blank" rel="noopener noreferrer">
-            {title}
+             <img src={urlToImage} alt="thumbnail" />
           </a>
-        </h3>
-        <p>{description}</p>
-      </div>
+        </div>
+        <div className="contents">
+          <h3>
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              {title}
+            </a>
+          </h3>
+          <p>{description}</p>
+        </div>
+      </>
+      )} */}
     </NewsItemBlock>
   );
 };
