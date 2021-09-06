@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState,  useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { TextField } from '@material-ui/core';
+import { MdSearch } from "react-icons/md";
+//import Button from '@material-ui/core/Button';
+//import {MDCTextField} from '@material/textfield';
 
 const categories = [
     {
@@ -40,6 +44,15 @@ const categories = [
     margin: 0 auto;
     border-left: 5px solid #e6e6e6;
     border-bottom: 5px solid #e6e6e6;
+
+    .myText {
+      margin-left: 150px;
+    }
+    .searchIcon {
+      margin-left: 5px;
+      font-size: 30px;
+      cursor: pointer;
+    }
     
     @media screen and (max-width: 768px) {
       width: 100%;
@@ -102,6 +115,14 @@ const categories = [
   ;
   
   const Categories = ({ onSelect, category }) => {
+
+    const [search, setSearch] = useState([]);
+    const inputRef = useRef();
+    const handleSearch = (e) => {
+      e.preventDefault();
+      setSearch([inputRef.current.value]);
+    };
+
     return (
       <CategoriesBlock>
         {categories.map((c) => (
@@ -121,6 +142,21 @@ const categories = [
           {c.text}
         </Category>
         ))}
+        {/* <label class="mdc-text-field mdc-text-field--outlined">
+          <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+            <span class="mdc-notched-outline__notch">
+              <span class="mdc-floating-label" id="my-label-id">Your Name</span>
+            </span>
+            <span class="mdc-notched-outline__trailing"></span>
+          </span>
+          <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id"/>
+        </label> */} 
+
+        {/* <TextField label="Standard" />
+        <TextField label="Filled" variant="filled" /> */}
+        <TextField className="myText" label="검색" variant="outlined" size="small" ref={inputRef} />
+        <MdSearch className="searchIcon" />
       </CategoriesBlock>
     );
   };
