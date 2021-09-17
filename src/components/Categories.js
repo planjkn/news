@@ -46,9 +46,11 @@ const categories = [
     border-bottom: 5px solid #e6e6e6;
 
     .myText {
+      height: 25px;
       margin-left: 150px;
     }
     .searchIcon {
+      vertical-align: middle;
       margin-left: 5px;
       font-size: 30px;
       cursor: pointer;
@@ -121,6 +123,8 @@ const categories = [
     const handleSearch = (e) => {
       e.preventDefault();
       setSearch([inputRef.current.value]);
+      //setSearch([inputRef.current.value, ...search]); //배열값이 추가됨
+      console.log(search);
     };
 
     return (
@@ -155,8 +159,11 @@ const categories = [
 
         {/* <TextField label="Standard" />
         <TextField label="Filled" variant="filled" /> */}
-        <TextField className="myText" label="검색" variant="outlined" size="small" ref={inputRef} />
-        <MdSearch className="searchIcon" />
+        <form onSubmit={e=>handleSearch(e)}>
+          {/* <TextField className="myText" label="검색" variant="outlined" size="small" ref={inputRef} /> */}
+          <input className="myText" placeholder="검색" ref={inputRef} />
+          <MdSearch className="searchIcon" />
+        </form>
       </CategoriesBlock>
     );
   };

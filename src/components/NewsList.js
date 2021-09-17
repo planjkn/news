@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import NewsItem from './NewsItem';
 import axios from 'axios';
 import usePromise from '../lib/usePromise';
+import Pagination from './Pagination';
 
 
 const NewsListBlock = styled.div`
@@ -110,13 +111,26 @@ const NewsListBlock = styled.div`
 // };
 
 const NewsList = ({ category }) => {
-  const [loading, response, error] = usePromise(() => {
+
+  const [loading, response, error ] = usePromise(() => {
     const query = category === 'all' ? '' : `&category=${category}`;
     return axios.get(
       `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=bd27922d5692413bad59ef0ca957c20b`
     );
   }, [category]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(5);
+
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+  function currentPosts(tmp) {
+    let currentPosts = 0;
+    currentPosts = tmp.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  }
+
+  
   if (loading) {
     return <NewsListBlock>대기 중...</NewsListBlock>;
   }
@@ -134,6 +148,7 @@ const NewsList = ({ category }) => {
       {articles.map((article) => (
         <NewsItem key={article.url} article={article} />
       ))}
+      <Pagination postsPerPage={postsPerPage} totalPosts={articles.length} paginate={setCurrentPage}></Pagination>
     </NewsListBlock>
   );
 };

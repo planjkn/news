@@ -89,9 +89,9 @@ const NewsItemBlock = styled.div`
 
 const NewsItem = ({ article }) => {
   const { title, description, url, urlToImage } = article;
-  if (urlToImage === 'null') {
+  // if (urlToImage === 'null') {
     
-  }
+  // }
   return (
     <NewsItemBlock>
 
