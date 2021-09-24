@@ -1,10 +1,6 @@
 import React, { useState,  useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { TextField } from '@material-ui/core';
-import { MdSearch } from "react-icons/md";
-//import Button from '@material-ui/core/Button';
-//import {MDCTextField} from '@material/textfield';
 
 const categories = [
     {
@@ -46,15 +42,26 @@ const categories = [
     border-bottom: 5px solid #e6e6e6;
 
     .myText {
-      height: 25px;
+      height: 28px;
       margin-left: 150px;
+      &:hover {
+        border: 2px solid #000063;
+      }
     }
-    .searchIcon {
-      vertical-align: middle;
-      margin-left: 5px;
-      font-size: 30px;
-      cursor: pointer;
+
+    .searchButton {
+      border: 0;
+      padding: 0;
+      background: 0;
+
+      .searchIcon {
+        vertical-align: middle;
+        margin-left: 5px;
+        font-size: 30px;
+        cursor: pointer;
+      }
     }
+   
     
     @media screen and (max-width: 768px) {
       width: 100%;
@@ -118,15 +125,6 @@ const categories = [
   
   const Categories = ({ onSelect, category }) => {
 
-    const [search, setSearch] = useState([]);
-    const inputRef = useRef();
-    const handleSearch = (e) => {
-      e.preventDefault();
-      setSearch([inputRef.current.value]);
-      //setSearch([inputRef.current.value, ...search]); //배열값이 추가됨
-      console.log(search);
-    };
-
     return (
       <CategoriesBlock>
         {categories.map((c) => (
@@ -157,13 +155,6 @@ const categories = [
           <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id"/>
         </label> */} 
 
-        {/* <TextField label="Standard" />
-        <TextField label="Filled" variant="filled" /> */}
-        <form onSubmit={e=>handleSearch(e)}>
-          {/* <TextField className="myText" label="검색" variant="outlined" size="small" ref={inputRef} /> */}
-          <input className="myText" placeholder="검색" ref={inputRef} />
-          <MdSearch className="searchIcon" />
-        </form>
       </CategoriesBlock>
     );
   };

@@ -5,19 +5,6 @@ import axios from 'axios';
 import usePromise from '../lib/usePromise';
 import Pagination from './Pagination';
 
-
-const NewsListBlock = styled.div`
-  box-sizing: border-box;
-  padding-bottom: 3rem;
-  width: 768px;
-  margin: 0 auto;
-  margin-top: 2rem;
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    padding: 0 1rem;
-  }
-`;
-
 // const sampleArticle = {
 //   title: '제목',
 //   description: '내용',
@@ -110,6 +97,19 @@ const NewsListBlock = styled.div`
 //   );
 // };
 
+const NewsListBlock = styled.div`
+  box-sizing: border-box;
+  padding-bottom: 3rem;
+  width: 768px;
+  margin: 0 auto;
+  margin-top: 2rem;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding: 0 1rem;
+  }
+`;
+
+
 const NewsList = ({ category }) => {
 
   const [loading, response, error ] = usePromise(() => {
@@ -143,11 +143,12 @@ const NewsList = ({ category }) => {
     return <NewsListBlock>에러 발생!</NewsListBlock>;
   }
   const { articles } = response.data;
+  
   return (
     <NewsListBlock>
-      {articles.map((article) => (
+      { articles.map((article) => (
         <NewsItem key={article.url} article={article} />
-      ))}
+      )) }
       <Pagination postsPerPage={postsPerPage} totalPosts={articles.length} paginate={setCurrentPage}></Pagination>
     </NewsListBlock>
   );
