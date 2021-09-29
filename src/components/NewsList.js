@@ -102,7 +102,7 @@ const NewsListBlock = styled.div`
   padding-bottom: 3rem;
   width: 768px;
   margin: 0 auto;
-  margin-top: 2rem;
+  margin-top: 10px;
   @media screen and (max-width: 768px) {
     width: 100%;
     padding: 0 1rem;
@@ -110,27 +110,19 @@ const NewsListBlock = styled.div`
 `;
 
 
-const NewsList = ({ category }) => {
+const NewsList = ({ category, search }) => {
 
+  console.log("Listcategory " + category);
+  console.log("ListSearch " + search);
+  
   const [loading, response, error ] = usePromise(() => {
     const query = category === 'all' ? '' : `&category=${category}`;
+    
     return axios.get(
       `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=bd27922d5692413bad59ef0ca957c20b`
     );
   }, [category]);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(5);
-
-  const indexOfLast = currentPage * postsPerPage;
-  const indexOfFirst = indexOfLast - postsPerPage;
-  function currentPosts(tmp) {
-    let currentPosts = 0;
-    currentPosts = tmp.slice(indexOfFirst, indexOfLast);
-    return currentPosts;
-  }
-
-  
+    
   if (loading) {
     return <NewsListBlock>대기 중...</NewsListBlock>;
   }
@@ -143,14 +135,17 @@ const NewsList = ({ category }) => {
     return <NewsListBlock>에러 발생!</NewsListBlock>;
   }
   const { articles } = response.data;
+  const filterSearch = articles.filter(article => article.title.includes(search));
+  console.log(filterSearch);
   
   return (
+    <>
     <NewsListBlock>
-      { articles.map((article) => (
+      { filterSearch.map((article) => (
         <NewsItem key={article.url} article={article} />
       )) }
-      <Pagination postsPerPage={postsPerPage} totalPosts={articles.length} paginate={setCurrentPage}></Pagination>
     </NewsListBlock>
+    </>
   );
 };
 

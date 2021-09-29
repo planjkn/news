@@ -1,0 +1,32 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css";
+
+.searchForm {
+  width: 806px;
+  margin: 0 auto;
+  text-align: right;
+  margin-top: 30px;
+
+
+  .myText {
+      height: 28px;
+      &:hover {
+        border: 2px solid gray;
+      }
+      &::placeholder {
+        
+      }
+    }
+
+  .searchButton {
+    border: 0;
+    padding: 0;
+    background: 0;
+
+    .searchIcon {
+      vertical-align: middle;
+      margin-left: 5px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+  }
+}

@@ -87,11 +87,9 @@ const NewsItemBlock = styled.div`
   }
 `;
 
-const NewsItem = ({ article }) => {
+const NewsItem = ({ article, filterSearch }) => {
   const { title, description, url, urlToImage } = article;
-  // if (urlToImage === 'null') {
-    
-  // }
+
   return (
     <NewsItemBlock>
       {urlToImage && (
@@ -109,26 +107,7 @@ const NewsItem = ({ article }) => {
           </h3>
           <p>{description}</p>
         </div>
-      
 
-
-      {/* {urlToImage && (
-        <>
-        <div className="thumbnail">
-          <a href={url} target="_blank" rel="noopener noreferrer">
-             <img src={urlToImage} alt="thumbnail" />
-          </a>
-        </div>
-        <div className="contents">
-          <h3>
-            <a href={url} target="_blank" rel="noopener noreferrer">
-              {title}
-            </a>
-          </h3>
-          <p>{description}</p>
-        </div>
-      </>
-      )} */}
     </NewsItemBlock>
   );
 };
