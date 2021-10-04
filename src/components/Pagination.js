@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { css } from 'styled-components';
 
 const PageUl = styled.ul`
-  width: 100%;
+  width: 99%;
   float:left;
   list-style: none;
   text-align: center;
-  color: #252525;
+  color: #263A6C;
   padding: 1px;
 `
 
@@ -19,6 +20,7 @@ const PageLi = styled.li`
   border-radius: 10px;
   width: 25px;
   border: 1px solid gray;
+
   &:hover{
     cursor:pointer;
     color:white;
@@ -30,17 +32,21 @@ const PageLi = styled.li`
   }
 `
 
-const PageSpan = styled.span`
+const PageDiv = styled.div`
+
   &:hover::after,
   &:focus::after{
     border-radius:100%;
     color:white;
     background-color:#263A6C;
-  }
+  } 
 `
 
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   const pageNumbers = [];
+  const [activeBtn, setActiveBtn] = useState(1);
+  console.log("activeBtn: " + activeBtn);
+
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
@@ -49,10 +55,11 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
       <nav>
         <PageUl className="pagination">
           {pageNumbers.map(number => (
-            <PageLi key={number} className="page-item">
-              <PageSpan onClick={() => paginate(number)} className="page-link">
+            <PageLi key={number} className="page-item"  style={ number===activeBtn ? {color: 'white', backgroundColor: '#263A6C'} : {color: '#263A6C', backgroundColor: 'white'} }>
+              <PageDiv onClick={() => {paginate(number); setActiveBtn(number); console.log("number: " + number);}}
+                 className="page-link">
                 {number}
-              </PageSpan>
+              </PageDiv>
             </PageLi>
           ))}
         </PageUl>
