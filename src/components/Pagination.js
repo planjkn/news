@@ -55,9 +55,8 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
       <nav>
         <PageUl className="pagination">
           {pageNumbers.map(number => (
-            <PageLi key={number} className="page-item"  style={ number===activeBtn ? {color: 'white', backgroundColor: '#263A6C'} : {color: '#263A6C', backgroundColor: 'white'} }>
-              <PageDiv onClick={() => {paginate(number); setActiveBtn(number); console.log("number: " + number);}}
-                 className="page-link">
+            <PageLi key={number} style={ number===activeBtn ? {color: 'white', backgroundColor: '#263A6C'} : {color: '#263A6C', backgroundColor: 'white'} }>
+              <PageDiv onClick={() => {paginate(number); setActiveBtn(number); console.log("number: " + number);}}>
                 {number}
               </PageDiv>
             </PageLi>

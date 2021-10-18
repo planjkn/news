@@ -35,7 +35,7 @@ const categories = [
   
   const CategoriesBlock = styled.div`
     display: flex;
-    padding: 1rem 2rem;
+    padding: 15px 20px;
     width: 990px;
     margin: 0 auto;
     border-left: 5px solid #e6e6e6;
@@ -95,12 +95,12 @@ const categories = [
   //   }
   // `
   const Category = styled(NavLink)`
-    font-size: 1.125rem;
+    font-size: 18px;
     cursor: pointer;
     white-space: pre;
     text-decoration: none;
     color: inherit;
-    padding-bottom: 0.25rem;
+    padding-bottom: 4px;
 
     &:hover {
       color: #000063;

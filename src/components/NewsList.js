@@ -139,8 +139,7 @@ const NewsList = ({ category, search }) => {
   }
   
   const { articles } = resolved.data;
-  const filterSearch = articles.filter(article => article.title.includes(search));
-  console.log(filterSearch);
+  const filterSearch = articles.filter(article => article.title.toLowerCase().includes(search));
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -151,11 +150,14 @@ const NewsList = ({ category, search }) => {
   return (
     <>
     <NewsListBlock>
-      { currentPosts.map((article) => (
+      { search ? filterSearch.map((article) => (
+        <NewsItem key={article.url} article={article} />
+      )) :
+        currentPosts.map((article) => (
         <NewsItem key={article.url} article={article} />
       )) }
     </NewsListBlock>
-    <Pagination postsPerPage={postsPerPage} totalPosts={articles.length} paginate={paginate} />
+    <Pagination postsPerPage={postsPerPage} totalPosts={search ? filterSearch.length : articles.length} paginate={paginate} />
     </>
   );
 };

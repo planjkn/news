@@ -20,7 +20,7 @@ const NewsPage = ({match}) => {
     return (
         <>
             <Categories />
-            <form onSubmit={ e=>handleSearch(e) } className={cx('searchForm')}>
+            <form onSubmit={ e => handleSearch(e) } className={cx('searchForm')}>
                 <input type="search" className={cx('myText')} placeholder="검색" onChange={ e => setSearch(e.target.value)} />
                 {/* <input type="search" className={cx('myText')} placeholder="검색" onChange={ e => setSearch(e.target.value)} /> */}
                 {/* <button type="submit" className={cx('searchButton')}><MdSearch className={cx('searchIcon')} /></button> */}
