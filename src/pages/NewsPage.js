@@ -24,7 +24,6 @@ const NewsPage = ({match}) => {
                 <input type="search" className={cx('myText')} placeholder="검색" onChange={ e => setSearch(e.target.value)} />
                 {/* <input type="search" className={cx('myText')} placeholder="검색" onChange={ e => setSearch(e.target.value)} /> */}
                 {/* <button type="submit" className={cx('searchButton')}><MdSearch className={cx('searchIcon')} /></button> */}
-                
             </form>
             <NewsList category={category} search={search} />
         </>
